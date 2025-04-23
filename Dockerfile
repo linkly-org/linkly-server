@@ -26,17 +26,14 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Create a stage for building the application.
 FROM deps as build
 
-# Download additional development dependencies before building, as some projects require
-# "devDependencies" to be installed to build. If you don't need this, remove this step.
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci
-
 # Copy the rest of the source files into the image.
 COPY . .
+
+# Install dev dependencies (needed for build)
+RUN --mount=type=cache,target=/root/.npm npm ci
+
 # Run the build script.
-RUN npm run build
+RUN ls -la && npm run build
 
 ################################################################################
 # Create a new stage to run the application with minimal runtime dependencies
