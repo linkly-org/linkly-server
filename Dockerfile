@@ -1,11 +1,5 @@
 # syntax=docker/dockerfile:1
 
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Dockerfile reference guide at
-# https://docs.docker.com/go/dockerfile-reference/
-
-# Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
-
 ARG NODE_VERSION=20.10.0
 
 ################################################################################
@@ -15,9 +9,8 @@ FROM node:${NODE_VERSION}-alpine as base
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
 
-
 ################################################################################
-# Create a stage for installing production dependecies.
+# Create a stage for installing production dependencies.
 FROM base as deps
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
@@ -53,23 +46,30 @@ FROM base as final
 # Use production node environment by default.
 ENV NODE_ENV production
 
-# Create the logs directory and set ownership to the node user
-RUN mkdir -p /usr/src/app/logs && chown -R node:node /usr/src/app/logs
+# Copy package.json and prisma schema
+COPY package.json .
+COPY prisma/schema.prisma ./prisma/schema.prisma
+
+# Copy production dependencies and built application
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+COPY --from=build /usr/src/app/dist ./dist
+# Create logs directory and fix permissions
+RUN mkdir -p /usr/src/app/logs && \
+    # Fix permissions for node_modules and especially prisma directory
+    chown -R node:node /usr/src/app && \
+    # Ensure write permissions for prisma specifically
+    chmod -R 755 /usr/src/app/node_modules && \
+    mkdir -p /usr/src/app/node_modules/.prisma && \
+    chmod -R 777 /usr/src/app/node_modules/.prisma && \
+    # Make sure the prisma directory is writable
+    mkdir -p /usr/src/app/node_modules/prisma && \
+    chmod -R 777 /usr/src/app/node_modules/prisma
 
 # Run the application as a non-root user.
 USER node
-
-# Copy package.json so that package manager commands can be used.
-COPY package.json .
-
-# Copy the production dependencies from the deps stage and also
-# the built application from the build stage into the image.
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/./dist ././dist
-
 
 # Expose the port that the application listens on.
 EXPOSE 4000
 
 # Run the application.
-CMD npm run start
+CMD npm run db:deploy && npm run start
