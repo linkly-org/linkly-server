@@ -1,0 +1,11 @@
+2025-04-23 20:58:22 [ERROR] Error fetching URLs 
+Invalid `prisma.urls.findMany()` invocation in
+/Users/sahilverma/Devspace/projects/linkly/linkly-server/src/controllers/urlController.ts:17:36
+
+  14 ) => {
+  15   logger.start("getAllShortUrls", "urlController");
+  16   try {
+→ 17     const urls = await prisma.urls.findMany(
+Can't reach database server at `localhost:15432`
+
+Please make sure your database server is running at `localhost:15432`. {"clientVersion":"6.6.0","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: \nInvalid `prisma.urls.findMany()` invocation in\n/Users/sahilverma/Devspace/projects/linkly/linkly-server/src/controllers/urlController.ts:17:36\n\n  14 ) => {\n  15   logger.start(\"getAllShortUrls\", \"urlController\");\n  16   try {\n→ 17     const urls = await prisma.urls.findMany(\nCan't reach database server at `localhost:15432`\n\nPlease make sure your database server is running at `localhost:15432`.\n    at zn.handleRequestError (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:6784)\n    at zn.request (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:6491)\n    at l (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:130:9778)"}

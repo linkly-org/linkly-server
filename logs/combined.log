@@ -1,2 +1,62 @@
 2025-04-17 21:27:10 [INFO] [App.ts] : [init()]    start ===> 
 2025-04-17 21:27:10 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:06:15 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:06:15 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:10:23 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:10:23 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:16:08 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:16:08 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:20:18 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:20:18 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:20:48 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:20:48 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:22:04 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:22:04 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:22:10 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:22:10 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:22:27 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:22:27 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:23:12 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:23:12 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:23:12 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:23:12 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:23:18 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:23:20 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:23:26 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:23:49 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:24:04 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:24:04 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:24:04 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:24:04 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:24:07 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:24:07 [INFO] Fetched all URLs 
+2025-04-23 20:49:21 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:49:21 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:49:28 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:49:28 [INFO] Fetched all URLs 
+2025-04-23 20:49:31 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:49:47 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:49:47 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:49:48 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:49:48 [INFO] Fetched all URLs 
+2025-04-23 20:57:51 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:57:51 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:57:57 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:58:18 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 20:58:18 [INFO] Server is running on http://localhost:4000 
+2025-04-23 20:58:22 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 20:58:22 [ERROR] Error fetching URLs 
+Invalid `prisma.urls.findMany()` invocation in
+/Users/sahilverma/Devspace/projects/linkly/linkly-server/src/controllers/urlController.ts:17:36
+
+  14 ) => {
+  15   logger.start("getAllShortUrls", "urlController");
+  16   try {
+→ 17     const urls = await prisma.urls.findMany(
+Can't reach database server at `localhost:15432`
+
+Please make sure your database server is running at `localhost:15432`. {"clientVersion":"6.6.0","name":"PrismaClientInitializationError","stack":"PrismaClientInitializationError: \nInvalid `prisma.urls.findMany()` invocation in\n/Users/sahilverma/Devspace/projects/linkly/linkly-server/src/controllers/urlController.ts:17:36\n\n  14 ) => {\n  15   logger.start(\"getAllShortUrls\", \"urlController\");\n  16   try {\n→ 17     const urls = await prisma.urls.findMany(\nCan't reach database server at `localhost:15432`\n\nPlease make sure your database server is running at `localhost:15432`.\n    at zn.handleRequestError (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:7759)\n    at zn.handleAndLogRequestError (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:6784)\n    at zn.request (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:121:6491)\n    at l (/Users/sahilverma/Devspace/projects/linkly/linkly-server/generated/prisma/runtime/library.js:130:9778)"}
+2025-04-23 21:00:12 [INFO] [App.ts] : [init()]    start ===> 
+2025-04-23 21:00:12 [INFO] Server is running on http://localhost:4000 
+2025-04-23 21:00:16 [INFO] [urlController.ts] : [getAllShortUrls()]    start ===> 
+2025-04-23 21:00:16 [INFO] Fetched all URLs 

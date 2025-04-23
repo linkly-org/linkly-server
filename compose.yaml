@@ -14,6 +14,11 @@ services:
     environment:
       - PORT=4000
       - NODE_ENV=production
+    tty: true # Keeps the container running for debugging
+    env_file:
+      - .env
+    networks:
+      - url-shortener
     ports:
       - 1337:4000
     # The commented out section below is an example of how to define a PostgreSQL
@@ -37,9 +42,12 @@ services:
       - db-password
     volumes:
       - db-data:/var/lib/postgresql/data
+    networks:
+      - url-shortener
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_PASSWORD_FILE: /run/secrets/db-password
     ports:
       - 15432:5432
@@ -50,8 +58,26 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  prisma-studio:
+    image: node:lts-alpine3.17
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: npx prisma studio --port 5555 --browser none
+    networks:
+      - url-shortener
+    ports:
+      - "5555:5555"
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_started
 volumes:
   db-data:
 secrets:
   db-password:
     file: db/password.txt
+networks:
+  url-shortener:
+    name: url-shortener
